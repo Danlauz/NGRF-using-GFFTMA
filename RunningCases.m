@@ -1,0 +1,22 @@
+
+% Loop through the cases (or select only the ones needed)
+for cas = 1:14
+    try
+        % Generate the script name dynamically
+        scriptName = sprintf('Cas%d', cas);
+
+        % Display which script is being run
+        fprintf('Running script: %s\n', scriptName);
+
+        % Run the script
+        eval(scriptName);
+
+    catch ME
+        % Use exist to check if scriptName was defined
+        if exist('scriptName', 'var')
+            fprintf('Error while running %s: %s\n', scriptName, ME.message);
+        else
+            fprintf('Error occurred before scriptName was defined: %s\n', ME.message);
+        end
+    end
+end
